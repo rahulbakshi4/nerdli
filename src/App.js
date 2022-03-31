@@ -1,7 +1,11 @@
+import "./App.css"
+import { Navbar } from "./frontend/components";
+import { HomePage } from "./frontend/pages";
 function App() {
   return (
     <div className="App">
-      "Brainli"
+      <Navbar />
+      <HomePage />
     </div>
   );
 }
