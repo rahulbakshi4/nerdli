@@ -5,6 +5,12 @@
     justify-content: space-between;
     padding: 1rem 2rem .5rem;   
     flex-wrap: wrap;
+    z-index: 2;
+    position: fixed;
+    width: 100%;
+    background-color: var(--clr-white);
+    border-bottom: 0.8px solid var(--clr-gray);
+  
 }
 .navbar-right{
     display: flex;

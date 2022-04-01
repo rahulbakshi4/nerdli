@@ -1,12 +1,17 @@
 import "./App.css"
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Navbar } from "./frontend/components";
-import { HomePage } from "./frontend/pages";
+import { HomePage, VideoListing } from "./frontend/pages";
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Navbar />
-      <HomePage />
-    </div>
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/videos' element={<VideoListing />} />
+      </Routes>
+
+    </Router>
   );
 }
 
