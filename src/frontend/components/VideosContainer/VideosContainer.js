@@ -4,25 +4,25 @@ import { videos } from "../../../backend/db/videos"
 export const VideosContainer = () => {
     return (
         <div className="video-list">
-            <div class="chips basic-chips">
-                <button class="chip">
+            <div className="chips basic-chips">
+                <button className="chip">
                     All
                 </button>
-                <button class="chip">
+                <button className="chip">
                     notion
                 </button>
-                <button class="chip">
+                <button className="chip">
                     obsidian
                 </button>
-                <button class="chip">
+                <button className="chip">
                     logseq
                 </button>
-                <button class="chip">
+                <button className="chip">
                     techniques
                 </button>
             </div>
             <div className="product-list">
-                {videos.map(({ _id, title, creator }) => <VideoCard id={_id} title={title} creator={creator} />)}
+                {videos.map(({ _id, title, creator }) => <VideoCard key={_id} id={_id} title={title} creator={creator} />)}
             </div>
         </div>
 
