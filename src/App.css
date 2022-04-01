@@ -37,6 +37,8 @@ select {
 .ff-title {
   font-family: 'Fredericka the Great', cursive;
 }
-.ff-title a{
-  text-decoration: none;
+.main-container {
+  display: flex;
+  padding: 1rem 1rem;
 }
+

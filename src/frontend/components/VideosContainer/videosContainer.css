@@ -1,0 +1,49 @@
+.video-list{
+    margin-top: 5rem;
+    margin-left: 11rem;
+}
+
+.product-list{
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    padding: 1rem 1rem;
+    gap: 1.25rem;
+}
+.chip{
+    border-radius: 1.25rem;
+    background-color: var(--clr-gray-light);
+    padding: .25rem 1rem;
+    display: flex;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+   
+}
+.chip:hover{
+    background-color: var(--clr-dark);
+    color: var(--clr-white);
+}
+.chip:active{
+    background-color: var(--clr-dark);
+    color: var(--clr-white);
+    transform: translate(0,0.2rem);
+}
+.chips{
+    display: flex;
+    padding: 1rem;
+    gap: .75rem;
+    flex-wrap: wrap;
+   
+}
+@media only screen and (max-width: 870px ){
+    .video-list{
+        margin-left: 4rem;
+    }
+  }
+  @media only screen and (max-width: 400px ){
+    .video-list{
+        margin-left: 2rem;
+    }
+  }
