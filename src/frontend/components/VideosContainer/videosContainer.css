@@ -30,6 +30,10 @@
     color: var(--clr-white);
     transform: translate(0,0.2rem);
 }
+.chip:focus{
+    background-color: var(--clr-dark);
+    color: var(--clr-white);
+}
 .chips{
     display: flex;
     padding: 1rem;
