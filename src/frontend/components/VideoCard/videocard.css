@@ -8,9 +8,44 @@
     padding: 0rem;
     list-style-type: none;
   }
+  .stacked-items:hover {
+   background-color: var(--clr-white);
+  }
 .list-content{
     line-height: 1.3;
 }
 .icon-btn{
     padding: .25rem;
+}
+.list-group{
+    padding-top:2.75rem;
+    position: absolute;
+    z-index: 3;
+    right: 1rem;
+    top: 5rem;
+    border-radius: 8px;
+    background-color: var(--clr-gray);
+}
+.none{
+    display: none;
+}
+.show{
+    display: block;
+}
+.dropdown-list {
+    padding-left: 0;
+    list-style: none;
+}
+.dropdown-list li {
+    padding: 0.5rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: flex-end;
+    gap: 1.25rem;
+}
+
+.dropdown-list li:hover {
+    font-weight: 600;
+    border-radius: 4px;
+    background-color: var(--clr-white);
 }
