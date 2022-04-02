@@ -1,13 +1,29 @@
 import './navbar.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/auth-context'
 export const Navbar = () => {
-
+    const { auth, setAuth } = useAuth()
+    const navigate = useNavigate()
+    const logoutHandler = () => {
+        setAuth({ token: '', isAuthenticated: false })
+        localStorage.removeItem('token')
+        localStorage.removeItem('isAuthenticated')
+        localStorage.removeItem('userName')
+        navigate("/")
+    }
     return (
         <nav className="navbar ff-title">
             <h2 className="text-2xl "><Link to="/" className="links">nerdli.</Link></h2>
             <ul className="navbar-right text-normal">
-                <li><Link to="/videos" className="links">Explore</Link></li>
-                <li><a>Login</a></li>
+                <li>
+                    <span>
+                        {auth.isAuthenticated ? localStorage.getItem("userName") : <Link to="/login" className='links'>Log In</Link>}
+                    </span>
+                </li>
+                {auth.isAuthenticated && <li className="pointer">
+                    <span onClick={logoutHandler}> Logout
+                    </span>
+                </li>}
             </ul>
         </nav>
     )
