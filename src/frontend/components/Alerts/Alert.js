@@ -1,7 +1,7 @@
 
 export const Alert = ({ message, variant }) => {
     return (
-        <div class={`alert alert--${variant}`}>
+        <div className={`alert alert--${variant}`}>
             {message}
         </div>
     )
