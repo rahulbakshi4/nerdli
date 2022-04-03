@@ -43,7 +43,6 @@ export const VideoCard = ({ id, title, creator }) => {
         }
     }
 
-
     return (
         <div className="card">
             <div>
@@ -70,7 +69,7 @@ export const VideoCard = ({ id, title, creator }) => {
 
                 <li>
                     <span className='material-icons'>watch_later</span>
-                    {!inWatchlater && <span onClick={() => auth.isAuthenticated ? addToWatcherLater(video) : navigate("/login")} >Add to Watch later</span>}
+                    {!inWatchlater && <span onClick={() => auth.isAuthenticated ? addToWatcherLater(video) && setDropdown("none") : navigate("/login")} >Add to Watch later</span>}
                     {inWatchlater && <span onClick={() => auth.isAuthenticated ? deleteFromWatchlater(video) : navigate("/login")}>Delete From Watch Later</span>}
                 </li>
             </ul>
