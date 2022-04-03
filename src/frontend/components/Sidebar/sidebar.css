@@ -16,7 +16,7 @@
     padding-left: 0;
     list-style: none;
 }
-.side-list li {
+.side-list a {
     padding: 0.5rem;
     border-radius: 5px;
     display: flex;
@@ -24,7 +24,7 @@
     gap: 1.25rem;
 }
 
-.side-list li:hover {
+.side-list a:hover ,.active {
     font-weight: 600;
     background: var(--clr-gray-light);
     border-radius: 4px;
@@ -32,9 +32,10 @@
 
 
 @media only screen and (max-width: 870px ){
-  .side-list > li >a {
+  .side-list-title {
       display: none;
   }
+
   .side-bar{
     min-width: 2rem;
   }

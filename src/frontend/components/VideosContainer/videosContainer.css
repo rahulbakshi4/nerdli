@@ -3,7 +3,7 @@
     margin-left: 11rem;
 }
 
-.product-list{
+.item-list{
     flex-grow: 1;
     display: flex;
     flex-wrap: wrap;

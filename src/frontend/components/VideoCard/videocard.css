@@ -24,6 +24,7 @@
     right: 1rem;
     top: 5rem;
     border-radius: 8px;
+    width: 16rem;
     background-color: var(--clr-gray);
 }
 .none{
