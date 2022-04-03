@@ -19,7 +19,6 @@ const WatchLaterProvider = ({ children }) => {
                         setWatchlater((prevItems) => ({
                             ...prevItems, watchlaterItems: response.data.watchlater, watchlaterLoading: false
                         }))
-                        console.log(watchlater)
                     }
 
                 } catch (error) {

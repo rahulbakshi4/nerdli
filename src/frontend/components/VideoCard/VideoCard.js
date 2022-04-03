@@ -42,6 +42,20 @@ export const VideoCard = ({ id, title, creator }) => {
             console.log(err)
         }
     }
+    const addClickHandler = () => {
+        if (!auth.isAuthenticated) {
+            navigate('/login')
+        }
+        addToWatcherLater(video)
+        setDropdown("none")
+    }
+
+    const deleteClickHandler = () => {
+        if (!auth.isAuthenticated) {
+            navigate('/login')
+        }
+        deleteFromWatchlater(video)
+    }
 
     return (
         <div className="card">
@@ -69,8 +83,15 @@ export const VideoCard = ({ id, title, creator }) => {
 
                 <li>
                     <span className='material-icons'>watch_later</span>
-                    {!inWatchlater && <span onClick={() => auth.isAuthenticated ? addToWatcherLater(video) && setDropdown("none") : navigate("/login")} >Add to Watch later</span>}
-                    {inWatchlater && <span onClick={() => auth.isAuthenticated ? deleteFromWatchlater(video) : navigate("/login")}>Delete From Watch Later</span>}
+                    {!inWatchlater &&
+                        <span onClick={() => addClickHandler()} >
+                            Add to Watch later
+                        </span>}
+
+                    {inWatchlater &&
+                        <span onClick={() => deleteClickHandler()}>
+                            Delete From Watch Later
+                        </span>}
                 </li>
             </ul>
         </div>
