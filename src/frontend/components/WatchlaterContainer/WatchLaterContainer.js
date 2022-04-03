@@ -6,7 +6,7 @@ export const WatchLaterContainer = () => {
     console.log(watchlater.watchlaterItems)
     return (
         <div className="video-list">
-            {watchlater.watchlaterItems.length ? (<div className="product-list">
+            {watchlater.watchlaterItems.length ? (<div className="item-list">
 
                 {watchlater.watchlaterItems.map(({ id, title, creator }) => {
 
