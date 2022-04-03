@@ -1,7 +1,49 @@
 import "./videocard.css"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useAuth } from "../../context/auth-context"
+import { useWatchlater } from "../../context/watchlater-context"
+import { addToWatchLaterService, deleteFromWatchLaterService } from "../../services/watchLaterServices"
+import { useNavigate } from "react-router-dom"
 export const VideoCard = ({ id, title, creator }) => {
+    const { auth } = useAuth()
+    const navigate = useNavigate()
+    const { watchlater, setWatchlater } = useWatchlater()
     const [dropdown, setDropdown] = useState("none")
+    const [inWatchlater, setInWatchlater] = useState(false)
+    const video = { id, title, creator }
+
+    useEffect(() => {
+        if (watchlater.watchlaterItems) {
+            watchlater.watchlaterItems.find((item) => item.id === video.id) &&
+                setInWatchlater(true)
+        }
+    }, [watchlater.watchlaterItems]);
+
+    const addToWatcherLater = async (video) => {
+        try {
+            const response = await addToWatchLaterService(video, auth.token)
+            if (response.status === 200 || response.status === 201) {
+                setWatchlater((prevData) => ({ ...prevData, watchlaterItems: response.data.watchlater }))
+                setInWatchlater(true)
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const deleteFromWatchlater = async (video) => {
+        try {
+            const response = await deleteFromWatchLaterService(video.id, auth.token)
+            if (response.status === 200 || response.status === 201) {
+                setWatchlater((prevData) => ({ ...prevData, watchlaterItems: response.data.watchlater }))
+                setInWatchlater(false)
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+
     return (
         <div className="card">
             <div>
@@ -28,7 +70,8 @@ export const VideoCard = ({ id, title, creator }) => {
 
                 <li>
                     <span className='material-icons'>watch_later</span>
-                    <span >Watch Later</span>
+                    {!inWatchlater && <span onClick={() => auth.isAuthenticated ? addToWatcherLater(video) : navigate("/login")} >Add to Watch later</span>}
+                    {inWatchlater && <span onClick={() => auth.isAuthenticated ? deleteFromWatchlater(video) : navigate("/login")}>Delete From Watch Later</span>}
                 </li>
             </ul>
         </div>

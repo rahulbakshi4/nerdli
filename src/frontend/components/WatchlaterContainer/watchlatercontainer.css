@@ -1,0 +1,9 @@
+.no-items > img {
+    width: 20%;
+    margin-inline: auto;
+}
+.no-items{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}

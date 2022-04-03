@@ -1,3 +1,4 @@
+import { Link, NavLink } from 'react-router-dom'
 import './sidebar.css'
 
 export const Sidebar = () => {
@@ -6,28 +7,44 @@ export const Sidebar = () => {
             <div>
                 <ul className="text-sm side-list">
                     <li>
-                        <span className='material-icons'>home</span>
-                        <a className="links">Home</a>
+                        <Link to="/" className="links">
+                            <span className='material-icons'>home</span>
+                            <span className="side-list-title">Home</span>
+                        </Link>
+
                     </li>
                     <li>
-                        <span className='material-icons'>explore</span>
-                        <a className="links">Explore</a>
+                        <NavLink to="/videos" className={({ isActive }) => isActive ? "active links" : "links"}>
+                            <span className='material-icons'>explore</span>
+                            <span className="side-list-title">Explore</span>
+                        </NavLink>
+
                     </li>
                     <li>
-                        <span className='material-icons'>playlist_add</span>
-                        <a className="links">Playlists</a>
+                        <Link to="/" className="links">
+                            <span className='material-icons'>playlist_add</span>
+                            <span className="side-list-title">Playlists</span>
+                        </Link>
                     </li>
                     <li>
-                        <span className='material-icons'>thumb_up</span>
-                        <a className="links">Liked</a>
+                        <Link to="/" className="links">
+                            <span className='material-icons'>thumb_up</span>
+                            <span className="side-list-title" >Liked</span>
+                        </Link>
                     </li>
                     <li>
-                        <span className='material-icons'>history</span>
-                        <a className="links" >History</a>
+
+                        <Link to="/" className="links">
+                            <span className='material-icons'>history</span>
+                            <span className="side-list-title" >History</span>
+                        </Link>
+
                     </li>
                     <li>
-                        <span className='material-icons'>watch_later</span>
-                        <a className="links">Watch Later</a>
+                        <NavLink className={({ isActive }) => isActive ? "active links" : "links"} to="/watchlater">
+                            <span className='material-icons'>watch_later</span>
+                            <span className="side-list-title">Watch Later</span>
+                        </NavLink>
                     </li>
 
                 </ul>
