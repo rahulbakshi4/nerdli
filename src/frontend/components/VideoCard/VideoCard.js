@@ -2,46 +2,33 @@ import "./videocard.css"
 import { useState, useEffect } from "react"
 import { useAuth } from "../../context/auth-context"
 import { useWatchlater } from "../../context/watchlater-context"
-import { addToWatchLaterService, deleteFromWatchLaterService } from "../../services/watchLaterServices"
 import { useNavigate } from "react-router-dom"
-export const VideoCard = ({ id, title, creator }) => {
+import { useLikes } from "../../context/likes-context"
+export const VideoCard = ({ _id, title, creator }) => {
     const { auth } = useAuth()
     const navigate = useNavigate()
-    const { watchlater, setWatchlater } = useWatchlater()
+    const video = { _id, title, creator }
+    const {
+        watchlater,
+        addToWatcherLater,
+        deleteFromWatchlater } = useWatchlater()
+    const {
+        likesState,
+        deleteFromLikes } = useLikes()
+    const inLikes = likesState.likes.find((item) => item._id === video._id)
     const [dropdown, setDropdown] = useState("none")
     const [inWatchlater, setInWatchlater] = useState(false)
-    const video = { id, title, creator }
+
 
     useEffect(() => {
         if (watchlater.watchlaterItems) {
-            watchlater.watchlaterItems.find((item) => item.id === video.id) &&
+            watchlater.watchlaterItems.find((item) => item._id === video._id) &&
                 setInWatchlater(true)
         }
+
     }, [watchlater.watchlaterItems]);
 
-    const addToWatcherLater = async (video) => {
-        try {
-            const response = await addToWatchLaterService(video, auth.token)
-            if (response.status === 200 || response.status === 201) {
-                setWatchlater((prevData) => ({ ...prevData, watchlaterItems: response.data.watchlater }))
-                setInWatchlater(true)
-            }
-        } catch (err) {
-            console.log(err)
-        }
-    }
 
-    const deleteFromWatchlater = async (video) => {
-        try {
-            const response = await deleteFromWatchLaterService(video.id, auth.token)
-            if (response.status === 200 || response.status === 201) {
-                setWatchlater((prevData) => ({ ...prevData, watchlaterItems: response.data.watchlater }))
-                setInWatchlater(false)
-            }
-        } catch (err) {
-            console.log(err)
-        }
-    }
     const addClickHandler = () => {
         if (!auth.isAuthenticated) {
             navigate('/login')
@@ -54,13 +41,19 @@ export const VideoCard = ({ id, title, creator }) => {
         if (!auth.isAuthenticated) {
             navigate('/login')
         }
-        deleteFromWatchlater(video)
+        deleteFromWatchlater(_id)
+        setDropdown("none")
+    }
+    const dislikeHandler = () => {
+        deleteFromLikes(video)
+        setDropdown("none")
     }
 
     return (
         <div className="card">
             <div>
-                <img className="card-img" src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`} alt="card image" />
+                <img onClick={() => navigate(`/videos/${_id}`)} className="card-img"
+                    src={`https://i.ytimg.com/vi/${_id}/maxresdefault.jpg`} alt="card image" />
             </div>
             <ul className="stacked-list">
                 <li className="stacked-items">
@@ -93,6 +86,12 @@ export const VideoCard = ({ id, title, creator }) => {
                             Delete From Watch Later
                         </span>}
                 </li>
+                {inLikes &&
+                    <li>
+                        <span className='material-icons'>thumb_down</span>
+                        <span onClick={() => dislikeHandler()} >Dislke</span>
+                    </li>
+                }
             </ul>
         </div>
     )

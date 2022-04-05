@@ -28,7 +28,7 @@ export const VideosContainer = () => {
                 </button>
             </div>
             <div className="item-list">
-                {data.map(({ _id, title, creator }) => <VideoCard key={_id} id={_id} title={title} creator={creator} />)}
+                {data.map(({ _id, title, creator }) => <VideoCard key={_id} _id={_id} title={title} creator={creator} />)}
             </div>
         </div>
 

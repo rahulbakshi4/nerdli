@@ -69,6 +69,14 @@ export const videos = [
       "Learn everything you need to learn about LogSeq for note taking.",
   },
   {
+    _id: "bMKsvo2mE_0",
+    title: "Ramses Oudt: Networked Thinking Using Logseq",
+    creator: "Tiago Forte",
+    categoryName: "logSeq",
+    description:
+      "In this video, Ramses, Community Manager at Logseq, shows the basics of networked thinking using the outlining tool Logseq.",
+  },
+  {
     _id: "rOSZOCoqOo8",
     title: "Zettelkasten Note-Taking Method: Simply Explained",
     creator: "Shu Omi",
