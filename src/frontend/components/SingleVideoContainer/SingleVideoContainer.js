@@ -31,22 +31,20 @@ export const SingleVideoContainer = () => {
                 console.log('error')
             }
         })()
-
     }, [id])
+
 
     const addLikeHandler = () => {
         if (!auth.isAuthenticated) {
             navigate('/login')
         }
         addToLikes(video)
-
     }
 
     const dislikeHandler = () => {
         if (!auth.isAuthenticated) {
             navigate('/login')
         }
-
         deleteFromLikes(video)
     }
 
@@ -62,7 +60,6 @@ export const SingleVideoContainer = () => {
             navigate('/login')
         }
         addToWatcherLater(video)
-
     }
 
     return (
@@ -134,7 +131,5 @@ export const SingleVideoContainer = () => {
                 </div>
             </div>
         </div>
-
-
     )
 }
