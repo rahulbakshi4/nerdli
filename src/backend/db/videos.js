@@ -22,7 +22,7 @@ export const videos = [
 
   {
     _id: "jAQFnnfxDmw",
-    title: "Notion Masterclass: Build a Personal Dashboard",
+    title: "Notion Masterclass: Personal Dashboard",
     creator: "Thomas Frank",
     categoryName: "notion",
     description:

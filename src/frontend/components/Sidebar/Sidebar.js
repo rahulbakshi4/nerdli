@@ -34,10 +34,10 @@ export const Sidebar = () => {
                 </li>
                 <li>
 
-                    <Link to="/" className="links">
+                    <NavLink to="/history" className={({ isActive }) => isActive ? "active links" : "links"}>
                         <span className='material-icons'>history</span>
                         <span className="side-list-title" >History</span>
-                    </Link>
+                    </NavLink>
 
                 </li>
                 <li>

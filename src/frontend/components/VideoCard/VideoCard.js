@@ -2,9 +2,11 @@ import "./videocard.css"
 import { useState, useEffect } from "react"
 import { useAuth } from "../../context/auth-context"
 import { useWatchlater } from "../../context/watchlater-context"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { useLikes } from "../../context/likes-context"
+import { useHistory } from "../../context/history-context"
 export const VideoCard = ({ _id, title, creator }) => {
+    const location = useLocation()
     const { auth } = useAuth()
     const navigate = useNavigate()
     const video = { _id, title, creator }
@@ -15,7 +17,14 @@ export const VideoCard = ({ _id, title, creator }) => {
     const {
         likesState,
         deleteFromLikes } = useLikes()
+
+    const {
+        historyState,
+        addToHistory,
+        deleteFromHistory } = useHistory()
+
     const inLikes = likesState.likes.find((item) => item._id === video._id)
+    const inHistory = historyState.history.find((item) => item._id === video._id)
     const [dropdown, setDropdown] = useState("none")
     const [inWatchlater, setInWatchlater] = useState(false)
 
@@ -52,7 +61,10 @@ export const VideoCard = ({ _id, title, creator }) => {
     return (
         <div className="card">
             <div>
-                <img onClick={() => navigate(`/videos/${_id}`)} className="card-img"
+                <img onClick={() => {
+                    navigate(`/videos/${_id}`); (auth.isAuthenticated && !inHistory) &&
+                        addToHistory(video)
+                }} className="card-img"
                     src={`https://i.ytimg.com/vi/${_id}/maxresdefault.jpg`} alt="card image" />
             </div>
             <ul className="stacked-list">
@@ -90,6 +102,12 @@ export const VideoCard = ({ _id, title, creator }) => {
                     <li>
                         <span className='material-icons'>thumb_down</span>
                         <span onClick={() => dislikeHandler()} >Dislke</span>
+                    </li>
+                }
+                {location.pathname === "/history" &&
+                    <li>
+                        <span className='material-icons'>thumb_down</span>
+                        <span onClick={() => deleteFromHistory(video)} >Delete From History</span>
                     </li>
                 }
             </ul>

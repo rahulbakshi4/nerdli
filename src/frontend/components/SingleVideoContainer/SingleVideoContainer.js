@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/auth-context"
 import { useLikes } from "../../context/likes-context"
+import { useHistory } from "../../context/history-context"
 import { useVideoList } from "../../context/video-context"
 import { useWatchlater } from "../../context/watchlater-context"
 import { getVideoByIdService } from "../../services/videoService"
@@ -14,6 +15,7 @@ export const SingleVideoContainer = () => {
     const { title, creator, description, categoryName } = video
     const { state } = useVideoList()
     const { auth } = useAuth()
+    const { historyState, addToHistory, deleteFromHistory } = useHistory()
     const { watchlater, addToWatcherLater, deleteFromWatchlater } = useWatchlater()
     const { likesState, addToLikes, deleteFromLikes } = useLikes()
     const inWatchlater = watchlater.watchlaterItems.find((item) => item._id === id)
@@ -26,13 +28,17 @@ export const SingleVideoContainer = () => {
                 const response = await getVideoByIdService(id)
                 if (response.status === 200 || response.status === 201) {
                     setVideo(response.data.video)
+
                 }
+
             } catch (error) {
                 console.log('error')
             }
         })()
 
+
     }, [id])
+
 
     const addLikeHandler = () => {
         if (!auth.isAuthenticated) {

@@ -1,7 +1,7 @@
 import "./App.css"
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Navbar } from "./frontend/components";
-import { HomePage, VideoListing, Login, SignUp, VideoPage, Liked, WatchLater } from "./frontend/pages";
+import { HomePage, VideoListing, Login, SignUp, VideoPage, Liked, WatchLater, History } from "./frontend/pages";
 import Mockman from "mockman-js";
 function MockAPI() {
   return (
@@ -21,6 +21,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/watchlater' element={<WatchLater />} />
         <Route path='/liked' element={<Liked />} />
+        <Route path='/history' element={<History />} />
         <Route path='/videos/:id' element={<VideoPage />} />
         <Route path="/mockman" element={<MockAPI />} />
 
