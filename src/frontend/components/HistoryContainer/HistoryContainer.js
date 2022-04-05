@@ -7,14 +7,15 @@ export const HistoryContainer = () => {
     return (
         <div className="video-list">
 
+            {historyState.history.length ? (<><button onClick={() => clearAllHistory()}
+                className="btn btn-ghost fw-semibold text-large">Clear All</button>
 
-            {historyState.history.length ? (<><button onClick={() => clearAllHistory()} className="btn btn-ghost fw-semibold text-large">Clear All</button><div className="item-list">
+                <div className="item-list">
+                    {data.reverse().map(({ _id, title, creator }) => {
 
-                {data.reverse().map(({ _id, title, creator }) => {
-
-                    return (<VideoCard key={_id} _id={_id} title={title} creator={creator} />)
-                })}
-            </div></>) : (
+                        return (<VideoCard key={_id} _id={_id} title={title} creator={creator} />)
+                    })}
+                </div></>) : (
                 <NoItemMessage />
             )}
 
