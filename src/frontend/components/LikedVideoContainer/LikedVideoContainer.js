@@ -1,14 +1,13 @@
-import "./watchlatercontainer.css"
 import { VideoCard } from "../VideoCard/VideoCard"
-import { useWatchlater } from "../../context/watchlater-context"
-export const WatchLaterContainer = () => {
-    const { watchlater } = useWatchlater()
-    console.log(watchlater.watchlaterItems)
+import { useLikes } from "../../context/likes-context"
+export const LikedVideoContainer = () => {
+    const { likesState } = useLikes()
+    console.log(likesState.likes)
     return (
         <div className="video-list">
-            {watchlater.watchlaterItems.length ? (<div className="item-list">
+            {likesState.likes.length ? (<div className="item-list">
 
-                {watchlater.watchlaterItems.map(({ _id, title, creator }) => {
+                {likesState.likes.map(({ _id, title, creator }) => {
 
                     return (<VideoCard key={_id} _id={_id} title={title} creator={creator} />)
                 })}
