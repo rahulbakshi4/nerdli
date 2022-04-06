@@ -64,6 +64,12 @@ export const SingleVideoContainer = () => {
         }
         addToWatcherLater(video)
     }
+    const addToPlaylistHandler = () => {
+        if (!auth.isAuthenticated) {
+            navigate('/login')
+        }
+        else { setModal(video) }
+    }
 
     return (
         <div className="video-list grow">
@@ -110,7 +116,7 @@ export const SingleVideoContainer = () => {
                                 Delete From Watch Later
                             </button>}
 
-                            <button onClick={() => { setModal(video) }} className="chip">
+                            <button onClick={() => addToPlaylistHandler()} className="chip">
                                 <span className="material-icons">playlist_add</span>
                                 Add
                             </button>

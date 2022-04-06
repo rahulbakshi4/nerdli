@@ -61,7 +61,15 @@ export const VideoCard = ({ _id, title, creator }) => {
         deleteFromLikes(video)
         setDropdown("none")
     }
-
+    const addToPlaylistHandler = () => {
+        if (!auth.isAuthenticated) {
+            navigate('/login')
+        }
+        else {
+            setModal(video);
+            setDropdown("none")
+        }
+    }
     return (
         <div className="card">
             <div>
@@ -87,7 +95,7 @@ export const VideoCard = ({ _id, title, creator }) => {
                 </div>
                 <li>
                     <span className='material-icons'>playlist_add</span>
-                    <span onClick={() => { setModal(video); setDropdown("none") }}>Add to Playlist</span>
+                    <span onClick={() => addToPlaylistHandler()}>Add to Playlist</span>
                 </li>
 
                 <li>
