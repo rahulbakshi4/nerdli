@@ -1,0 +1,28 @@
+.profile-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2.5rem;
+}
+
+.profile-section{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8rem 2rem;
+    gap: 2rem;
+    max-width: 70vw;
+    margin-inline: auto;
+}
+@media only screen and (max-width: 600px ){
+    .h-card{
+        flex-direction: column;
+    }
+    .profile-details{
+        text-align: center;
+    }
+    .profile-section h2{
+        font-size: 2rem;
+    }
+}

@@ -1,7 +1,7 @@
 import "./App.css"
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Navbar, PlaylistModal } from "./frontend/components";
-import { HomePage, VideoListing, Login, SignUp, VideoPage, Liked, WatchLater, History, Playlist } from "./frontend/pages";
+import { HomePage, VideoListing, Login, SignUp, VideoPage, Liked, WatchLater, History, Playlist, NotFound, Profile } from "./frontend/pages";
 import Mockman from "mockman-js";
 import { usePlaylist } from "./frontend/context/playlist-context";
 import { PlayListPage } from "./frontend/pages/PlayListPage";
@@ -29,6 +29,8 @@ function App() {
           <Route path='/playlist' element={<Playlist />} />
           <Route path='/playlist/:id' element={<PlayListPage />} />
           <Route path='/videos/:id' element={<VideoPage />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path='*' element={<NotFound />} />
           <Route path="/mockman" element={<MockAPI />} />
 
         </Routes>
