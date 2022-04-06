@@ -124,7 +124,7 @@ export const VideoCard = ({ _id, title, creator }) => {
                 }
                 {location.pathname === `/playlist/${id}` &&
                     <li>
-                        <span className='material-icons'>thumb_down</span>
+                        <span className='material-icons'>delete</span>
                         <span onClick={() => deleteFromPlaylist(id, video._id)} >Delete From Playlist</span>
                     </li>
                 }
