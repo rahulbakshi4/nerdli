@@ -8,6 +8,7 @@ import { AuthProvider } from "./frontend/context/auth-context";
 import { WatchLaterProvider } from "./frontend/context/watchlater-context";
 import { LikesProvider } from "./frontend/context/likes-context";
 import { HistoryProvider } from "./frontend/context/history-context";
+import { PlaylistProvider } from "./frontend/context/playlist-context";
 
 // Call make Server
 makeServer();
@@ -15,15 +16,17 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <HistoryProvider>
-        <LikesProvider>
-          <WatchLaterProvider>
-            <VideoListProvider>
-              <App />
-            </VideoListProvider>
-          </WatchLaterProvider>
-        </LikesProvider>
-      </HistoryProvider>
+      <PlaylistProvider>
+        <HistoryProvider>
+          <LikesProvider>
+            <WatchLaterProvider>
+              <VideoListProvider>
+                <App />
+              </VideoListProvider>
+            </WatchLaterProvider>
+          </LikesProvider>
+        </HistoryProvider>
+      </PlaylistProvider>
     </AuthProvider>
 
   </React.StrictMode>,

@@ -21,10 +21,10 @@ export const Sidebar = () => {
 
                 </li>
                 <li>
-                    <Link to="/" className="links">
+                    <NavLink to="/playlist" className={({ isActive }) => isActive ? "active links" : "links"}>
                         <span className='material-icons'>playlist_add</span>
                         <span className="side-list-title">Playlists</span>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
                     <NavLink to="/liked" className={({ isActive }) => isActive ? "active links" : "links"}>

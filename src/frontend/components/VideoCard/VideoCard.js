@@ -2,12 +2,14 @@ import "./videocard.css"
 import { useState, useEffect } from "react"
 import { useAuth } from "../../context/auth-context"
 import { useWatchlater } from "../../context/watchlater-context"
-import { useNavigate, useLocation } from "react-router-dom"
+import { useNavigate, useLocation, useParams } from "react-router-dom"
 import { useLikes } from "../../context/likes-context"
 import { useHistory } from "../../context/history-context"
+import { usePlaylist } from "../../context/playlist-context"
 export const VideoCard = ({ _id, title, creator }) => {
     const location = useLocation()
     const { auth } = useAuth()
+    const { id } = useParams()
     const navigate = useNavigate()
     const video = { _id, title, creator }
     const {
@@ -22,10 +24,12 @@ export const VideoCard = ({ _id, title, creator }) => {
         historyState,
         addToHistory,
         deleteFromHistory } = useHistory()
-
+    const { setModal, deleteFromPlaylist
+    } = usePlaylist()
     const inLikes = likesState.likes.find((item) => item._id === video._id)
     const inHistory = historyState.history.find((item) => item._id === video._id)
     const [dropdown, setDropdown] = useState("none")
+
     const [inWatchlater, setInWatchlater] = useState(false)
 
 
@@ -57,7 +61,15 @@ export const VideoCard = ({ _id, title, creator }) => {
         deleteFromLikes(video)
         setDropdown("none")
     }
-
+    const addToPlaylistHandler = () => {
+        if (!auth.isAuthenticated) {
+            navigate('/login')
+        }
+        else {
+            setModal(video);
+            setDropdown("none")
+        }
+    }
     return (
         <div className="card">
             <div>
@@ -83,7 +95,7 @@ export const VideoCard = ({ _id, title, creator }) => {
                 </div>
                 <li>
                     <span className='material-icons'>playlist_add</span>
-                    <span >Add to Playlist</span>
+                    <span onClick={() => addToPlaylistHandler()}>Add to Playlist</span>
                 </li>
 
                 <li>
@@ -110,7 +122,14 @@ export const VideoCard = ({ _id, title, creator }) => {
                         <span onClick={() => deleteFromHistory(video)} >Delete From History</span>
                     </li>
                 }
+                {location.pathname === `/playlist/${id}` &&
+                    <li>
+                        <span className='material-icons'>delete</span>
+                        <span onClick={() => deleteFromPlaylist(id, video._id)} >Delete From Playlist</span>
+                    </li>
+                }
             </ul>
+
         </div>
     )
 }
