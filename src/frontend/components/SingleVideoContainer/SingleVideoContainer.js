@@ -2,10 +2,12 @@ import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/auth-context"
 import { useLikes } from "../../context/likes-context"
+import { usePlaylist } from "../../context/playlist-context"
 import { useVideoList } from "../../context/video-context"
 import { useWatchlater } from "../../context/watchlater-context"
 import { getVideoByIdService } from "../../services/videoService"
 import { VideoCard } from "../VideoCard/VideoCard"
+import { PlaylistModal } from "../PlaylistModal/PlaylistModal"
 import "./singlevideocontainer.css"
 export const SingleVideoContainer = () => {
     const { id } = useParams()
@@ -14,6 +16,7 @@ export const SingleVideoContainer = () => {
     const { title, creator, description, categoryName } = video
     const { state } = useVideoList()
     const { auth } = useAuth()
+    const { modal, setModal } = usePlaylist()
     const { watchlater, addToWatcherLater, deleteFromWatchlater } = useWatchlater()
     const { likesState, addToLikes, deleteFromLikes } = useLikes()
     const inWatchlater = watchlater.watchlaterItems.find((item) => item._id === id)
@@ -63,7 +66,6 @@ export const SingleVideoContainer = () => {
     }
 
     return (
-
         <div className="video-list grow">
             <div className="video-container">
                 <div className="video">
@@ -108,7 +110,7 @@ export const SingleVideoContainer = () => {
                                 Delete From Watch Later
                             </button>}
 
-                            <button className="chip">
+                            <button onClick={() => { setModal(video) }} className="chip">
                                 <span className="material-icons">playlist_add</span>
                                 Add
                             </button>
@@ -130,6 +132,7 @@ export const SingleVideoContainer = () => {
 
                 </div>
             </div>
+
         </div>
     )
 }

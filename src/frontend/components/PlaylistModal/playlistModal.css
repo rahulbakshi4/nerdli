@@ -1,0 +1,36 @@
+.modal-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 4;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0;
+    top: 0;
+	left: 0;
+	right: 0;
+    transform: none;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.modal{
+    margin-inline: auto;
+    margin-top: 10rem;
+    
+}
+.play-list {
+    padding-left: 0;
+    list-style: none;
+}
+.play-list li {
+    padding: 0.5rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: flex-end;
+    gap: 1.25rem;
+}
+
+.play-list li:hover {
+    font-weight: 600;
+    background: var(--clr-gray-light);
+    border-radius: 4px;
+}
