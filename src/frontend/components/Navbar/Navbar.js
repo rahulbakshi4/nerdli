@@ -9,6 +9,7 @@ export const Navbar = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('isAuthenticated')
         localStorage.removeItem('userName')
+        localStorage.removeItem('userEmail')
         navigate("/")
     }
     return (
@@ -17,7 +18,7 @@ export const Navbar = () => {
             <ul className="navbar-right text-normal">
                 <li>
                     <span>
-                        {auth.isAuthenticated ? localStorage.getItem("userName") : <Link to="/login" className='links'>Log In</Link>}
+                        {auth.isAuthenticated ? <Link to="/profile" className="links">{localStorage.getItem("userName")}</Link> : <Link to="/login" className='links'>Log In</Link>}
                     </span>
                 </li>
                 {auth.isAuthenticated && <li className="pointer">
