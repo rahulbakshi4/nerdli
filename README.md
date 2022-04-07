@@ -44,6 +44,12 @@ Note: Add .env file in your root folder to you authentication
 ```
 REACT_APP_JWT_SECRET = secret_key
 ```
+## Preview
+
+
+https://user-images.githubusercontent.com/44318721/162240104-80617d57-c094-46a3-9777-de922a232cce.mp4
+
+
 
 
 ## Built With
