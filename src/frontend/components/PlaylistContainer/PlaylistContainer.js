@@ -2,12 +2,14 @@ import "./playlistcontainer.css"
 import { usePlaylist } from "../../context/playlist-context"
 import { useNavigate } from "react-router-dom"
 import { NoItemMessage } from "../NoItemMessage/NoItemMessage"
+import { useAuth } from "../../context/auth-context"
 export const PlaylistContainer = () => {
     const { playlistState, deletePlaylist } = usePlaylist()
     const navigate = useNavigate()
+    const { auth } = useAuth()
     return (
         <div className="video-list">
-            {playlistState.playlists.length ? (<>
+            {playlistState.playlists.length && auth.isAuthenticated ? (<>
 
                 <div className="item-list">
                     {playlistState.playlists.map(({ _id, title, videos }) => {

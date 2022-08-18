@@ -40,7 +40,7 @@ const LikesProvider = ({ children }) => {
                 toast.success('Added to likes')
             }
         } catch (err) {
-            toast.error('User login required')
+            toast('User login required', { duration: 1800 })
         }
     }
     const deleteFromLikes = async (video) => {

@@ -102,7 +102,7 @@ export const SingleVideoContainer = () => {
                                 </button>
                             }
                             {inLikes &&
-                                <button onClick={() => dislikeHandler()} className="chip chip-dark">
+                                <button onClick={() => dislikeHandler()} className={`chip ${auth.isAuthenticated ? "chip-dark" : ""}`}>
                                     <span className="material-icons">thumb_up</span>
                                     Like
                                 </button>
@@ -111,7 +111,7 @@ export const SingleVideoContainer = () => {
                                 <span className="material-icons">watch_later</span>
                                 Watch Later
                             </button>}
-                            {inWatchlater && <button onClick={() => deleteClickHandler()} className="chip chip-dark">
+                            {inWatchlater && <button onClick={() => deleteClickHandler()} className={`chip ${auth.isAuthenticated ? "chip-dark" : ""}`}>
                                 <span className="material-icons">watch_later</span>
                                 Watch Later
                             </button>}
