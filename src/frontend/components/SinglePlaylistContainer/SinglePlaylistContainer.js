@@ -11,7 +11,7 @@ export const SinglePlaylistContainer = () => {
     const currentPlaylist = playlistState.playlists.find((item) => item._id === id)
     return (
         <div className="video-list">
-            {auth.isauthenticated && currentPlaylist && currentPlaylist.videos.length !== 0 ? (<div className="item-list">
+            {auth.isAuthenticated && currentPlaylist && currentPlaylist.videos.length !== 0 ? (<div className="item-list">
 
                 {currentPlaylist.videos.map(({ _id, title, creator }) => {
 
