@@ -2,6 +2,7 @@ import React from 'react'
 import "../styles/profile.css"
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/auth-context'
+import toast from 'react-hot-toast'
 export const Profile = () => {
     const { auth, setAuth } = useAuth()
     const navigate = useNavigate()
@@ -11,6 +12,7 @@ export const Profile = () => {
         localStorage.removeItem('isAuthenticated')
         localStorage.removeItem('userName')
         localStorage.removeItem('userEmail')
+        toast.success('You are logged out')
         navigate("/")
     }
     return (

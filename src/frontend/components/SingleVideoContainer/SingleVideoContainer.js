@@ -91,7 +91,6 @@ export const SingleVideoContainer = () => {
                         <img src="https://res.cloudinary.com/rahulb4/image/upload/v1643855031/peep_rssuj0.png"
                             className="avatar avatar-small" alt="user avatar" />
                         <div className="list-content">
-
                             <p className="text-large">{title}</p>
                             <p className="text-sm">{creator}</p>
                         </div>
@@ -103,18 +102,18 @@ export const SingleVideoContainer = () => {
                                 </button>
                             }
                             {inLikes &&
-                                <button onClick={() => dislikeHandler()} className="chip">
-                                    <span className="material-icons">thumb_down</span>
-                                    Dislike
+                                <button onClick={() => dislikeHandler()} className="chip chip-dark">
+                                    <span className="material-icons">thumb_up</span>
+                                    Like
                                 </button>
                             }
                             {!inWatchlater && <button onClick={() => addClickHandler()} className="chip">
                                 <span className="material-icons">watch_later</span>
                                 Watch Later
                             </button>}
-                            {inWatchlater && <button onClick={() => deleteClickHandler()} className="chip">
+                            {inWatchlater && <button onClick={() => deleteClickHandler()} className="chip chip-dark">
                                 <span className="material-icons">watch_later</span>
-                                Delete From Watch Later
+                                Watch Later
                             </button>}
 
                             <button onClick={() => addToPlaylistHandler()} className="chip">

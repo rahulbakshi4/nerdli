@@ -21,6 +21,13 @@
     cursor: pointer;
    
 }
+.chip > span{
+    margin-right: .25rem;
+}
+.chip-dark{
+    background-color: var(--clr-dark);
+    color: var(--clr-white);
+}
 .chip:hover{
     background-color: var(--clr-dark);
     color: var(--clr-white);

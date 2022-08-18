@@ -11,7 +11,7 @@ import {
     CREATE_PLAYLIST, DELETE_PLAYLIST
 } from "../constants/playlist-constants"
 import { playlistReducer } from '../reducers/playlistReducer'
-
+import toast from 'react-hot-toast'
 const PlaylistContext = createContext()
 
 const PlaylistProvider = ({ children }) => {
@@ -57,6 +57,7 @@ const PlaylistProvider = ({ children }) => {
             const response = await deletePlaylistService(playlistID, auth.token)
             if (response.status === 200 || response.status === 201) {
                 playlistDispatch({ type: DELETE_PLAYLIST, payload: response.data.playlists })
+                toast.success('Playlist deleted')
             }
         } catch (err) {
             console.log(err)
@@ -68,6 +69,7 @@ const PlaylistProvider = ({ children }) => {
             const response = await addToPlaylistService(playlistID, video, auth.token)
             if (response.status === 200 || response.status === 201) {
                 playlistDispatch({ type: ADD_TO_PLAYLIST, payload: response.data.playlist })
+                toast.success('Added to playlist')
             }
         } catch (err) {
             console.log(err)
@@ -79,6 +81,7 @@ const PlaylistProvider = ({ children }) => {
             const response = await deleteFromPlaylistService(playlistID, videoID, auth.token)
             if (response.status === 200 || response.status === 201) {
                 playlistDispatch({ type: DELETE_FROM_PLAYLIST, payload: response.data.playlist })
+                toast.success('Deleted from playlist')
             }
         } catch (err) {
             console.log(err)

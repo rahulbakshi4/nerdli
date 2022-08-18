@@ -10,6 +10,9 @@
   height: 60vh;
   border: 1px solid var(--clr-gray);
 }
+.list-content > :nth-child(2) {
+    margin-top: .25rem;
+}
 .video-actions{
     border-bottom: 1px solid var(--clr-gray);
     display: flex;

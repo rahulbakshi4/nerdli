@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { getWatchLaterService, addToWatchLaterService, deleteFromWatchLaterService } from '../services/watchLaterServices'
 import { useAuth } from "./auth-context"
+import toast from 'react-hot-toast'
 
 const WatchLaterContext = createContext()
 const WatchLaterProvider = ({ children }) => {
@@ -39,6 +40,7 @@ const WatchLaterProvider = ({ children }) => {
             if (response.status === 200 || response.status === 201) {
                 setWatchlater((prevData) => ({ ...prevData, watchlaterItems: response.data.watchlater }))
                 setInWatchlater(true)
+                toast.success('Added to watchlater')
             }
         } catch (err) {
             console.log(err)
@@ -50,6 +52,7 @@ const WatchLaterProvider = ({ children }) => {
             if (response.status === 200 || response.status === 201) {
                 setWatchlater((prevData) => ({ ...prevData, watchlaterItems: response.data.watchlater }))
                 setInWatchlater(false)
+                toast.success('Deleted from watchlater')
             }
         } catch (err) {
             console.log(err)

@@ -17,7 +17,7 @@ export const PlaylistContainer = () => {
                                 <div className="stacked-items">
                                     <div onClick={() => navigate(`/playlist/${_id}`)} className="list-content playlist-details">
                                         <p className="text-normal fw-semibold">{title}</p>
-                                        <p className="text-sm">{videos.length} Videos</p>
+                                        <p className="text-sm">{videos.length} {videos.length === 1 ? "Video" : "Videos"}</p>
                                     </div>
                                     <button onClick={() => deletePlaylist(_id)} className="icon-btn material-icons stacked-btn">delete</button>
                                 </div>
