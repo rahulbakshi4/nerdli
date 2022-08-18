@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, useLocation } from "react-router-dom"
 import { useAuth } from "../../context/auth-context"
 import { useLikes } from "../../context/likes-context"
 import { usePlaylist } from "../../context/playlist-context"
@@ -12,6 +12,7 @@ import "./singlevideocontainer.css"
 export const SingleVideoContainer = () => {
     const { id } = useParams()
     const navigate = useNavigate()
+    const location = useLocation()
     const [video, setVideo] = useState({})
     const { title, creator, description, categoryName } = video
     const { state } = useVideoList()
@@ -39,7 +40,7 @@ export const SingleVideoContainer = () => {
 
     const addLikeHandler = () => {
         if (!auth.isAuthenticated) {
-            navigate('/login')
+            navigate('/login', { state: { from: location } })
         }
         addToLikes(video)
     }
@@ -60,13 +61,13 @@ export const SingleVideoContainer = () => {
     }
     const addClickHandler = () => {
         if (!auth.isAuthenticated) {
-            navigate('/login')
+            navigate('/login', { state: { from: location } })
         }
         addToWatcherLater(video)
     }
     const addToPlaylistHandler = () => {
         if (!auth.isAuthenticated) {
-            navigate('/login')
+            navigate('/login', { state: { from: location } })
         }
         else { setModal(video) }
     }
