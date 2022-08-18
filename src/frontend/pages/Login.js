@@ -2,12 +2,13 @@ import "../styles/auth.css"
 import { useState } from "react"
 import { LoginService } from "../services/authServices"
 import { useAuth } from "../context/auth-context"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { Alert } from "../components"
-
+import toast from "react-hot-toast"
 export const Login = () => {
     const { auth, setAuth } = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
     const [loggedIn, setLoggedIn] = useState({
         email: '', password: ''
     })
@@ -21,7 +22,8 @@ export const Login = () => {
             localStorage.setItem("userName", data.foundUser.name)
             localStorage.setItem("userEmail", data.foundUser.email)
             setAuth({ ...auth, token: data.encodedToken, isAuthenticated: true })
-            navigate("/videos")
+            toast.success("You are logged in")
+            navigate(location.state?.from?.pathname || '/videos', { replace: true })
         }
         else {
             setError(true)

@@ -1,6 +1,7 @@
 import './navbar.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/auth-context'
+import toast from 'react-hot-toast'
 export const Navbar = () => {
     const { auth, setAuth } = useAuth()
     const navigate = useNavigate()
@@ -10,6 +11,7 @@ export const Navbar = () => {
         localStorage.removeItem('isAuthenticated')
         localStorage.removeItem('userName')
         localStorage.removeItem('userEmail')
+        toast.success('You are logged out')
         navigate("/")
     }
     return (

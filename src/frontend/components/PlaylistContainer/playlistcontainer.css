@@ -7,6 +7,8 @@
     transition: box-shadow 300ms ease 0ms;
 }
 .playlist-details p{
-    padding-bottom: .25rem ;
-
+    padding: .25rem;
+}
+.playlist-details{
+    padding: .25rem;
 }

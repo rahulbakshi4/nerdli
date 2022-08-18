@@ -5,6 +5,7 @@ import { HomePage, VideoListing, Login, SignUp, VideoPage, Liked, WatchLater, Hi
 import Mockman from "mockman-js";
 import { usePlaylist } from "./frontend/context/playlist-context";
 import { PlayListPage } from "./frontend/pages/PlayListPage";
+import { Toaster } from "react-hot-toast";
 function MockAPI() {
   return (
     <div className="MockAPI">
@@ -34,7 +35,7 @@ function App() {
           <Route path="/mockman" element={<MockAPI />} />
 
         </Routes>
-
+        <Toaster />
       </Router>
       <PlaylistModal modal={modal} />
     </>
