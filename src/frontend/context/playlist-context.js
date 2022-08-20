@@ -72,7 +72,7 @@ const PlaylistProvider = ({ children }) => {
                 toast.success('Added to playlist')
             }
         } catch (err) {
-            console.log(err)
+            toast.error("Video already in playlist", { duration: 1800 })
         }
 
     }
